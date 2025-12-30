@@ -145,6 +145,8 @@ function resetCardDisplay() {
     
     playerCard.classList.add('hidden');
     cardPlaceholder.classList.remove('hidden');
+    cardPlaceholder.innerHTML = '<p>Нажми кнопку нижче, щоб побачити свою картку</p>';
+
     
     showCardBtn.style.display = 'inline-block';
     hideCardBtn.style.display = 'none';
