@@ -103,14 +103,30 @@ playerButtons.forEach(btn => {
 function startGame() {
     selectedCharacter = characters[Math.floor(Math.random() * characters.length)];
     
-    spyIndex = Math.floor(Math.random() * totalPlayers);
+    const specialChance = Math.random() * 100;
     
     players = [];
-    for (let i = 0; i < totalPlayers; i++) {
-        players.push({
-            number: i + 1,
-            isSpy: i === spyIndex
-        });
+    
+    if (specialChance < 3) {
+        const allSpies = Math.random() < 0.5; 
+        
+        for (let i = 0; i < totalPlayers; i++) {
+            players.push({
+                number: i + 1,
+                isSpy: allSpies
+            });
+        }
+        
+        spyIndex = allSpies ? 0 : -1; 
+    } else {
+        spyIndex = Math.floor(Math.random() * totalPlayers);
+        
+        for (let i = 0; i < totalPlayers; i++) {
+            players.push({
+                number: i + 1,
+                isSpy: i === spyIndex
+            });
+        }
     }
     
     setupScreen.classList.remove('active');
